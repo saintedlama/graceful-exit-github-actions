@@ -19,4 +19,5 @@ jobs:
     - run: |
         echo "No release required. Exiting..."
         exit 0
-      if: steps.should_release.conclusion != success
+      if: steps.should_release.outcome != 'success'
+    - run: echo "should be skipped"
