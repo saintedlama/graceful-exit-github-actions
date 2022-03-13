@@ -14,7 +14,9 @@ jobs:
     steps:
     - run: exit 1
       name: Fail
-      id: fail
-    - exit: success()
-      if: failure()
-    - run: echo "Should be skipped"
+      id: should_release
+      continue-on-error: true
+    - run: |
+        echo "No release required. Exiting..."
+        exit 0
+      if: steps.should_release.conclusion != success
